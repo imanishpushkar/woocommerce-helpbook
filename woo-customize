@@ -59,3 +59,22 @@ function custom_empty_cart_message()
   echo $html . '</p>';
 }
 
+
+//view cart (on product listing page)
+add_filter('gettext', 'woocommerce_custom_change_cart_string', 100, 3);
+function woocommerce_custom_change_cart_string($translated_text, $text, $domain)
+{
+
+  $translated_text = str_replace("View cart", "Some Text", $translated_text);
+
+  return $translated_text;
+}
+
+//change proceed to checkout text on cart page
+function woocommerce_button_proceed_to_checkout()
+{ ?>
+  <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="checkout-button button alt wc-forward">
+    <?php esc_html_e('Some Text', 'woocommerce'); ?>
+  </a>
+<?php
+}
