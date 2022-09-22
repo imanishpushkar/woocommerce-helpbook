@@ -1,0 +1,45 @@
+/*
+* can use this approach to translate your website without any plugin
+* can use this approach to change pre-defined texts
+* use list of conditional tags to translate your entire website https://woocommerce.com/document/conditional-tags/
+*/
+//Cart page translate
+
+function change_cart_texts($translated, $text, $domain)
+{
+  if (is_cart() && $translated == 'Update cart') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Subtotal') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Quantity') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Product') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Price') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Apply coupon') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Coupon code') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Shipping') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Total') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'removed') {
+    $translated = 'Some Text';
+  }
+  if (is_cart() && $translated == 'Undo') {
+    $translated = 'Some Text';
+  }
+  return $translated;
+}
+add_filter('gettext', 'change_cart_texts', 20, 3);
