@@ -20,3 +20,6 @@ after adding these in functions.php, add the below codes in woocommerce.php
   <!-- Time to add some widgets! -->
 <?php endif; ?>
 ```
+Translate your WooCoomerce Website without any plugin (https://github.com/imanishpushkar/woocommercehelpbook/blob/master/woo-customize-different-approach)
+<br/>
+Translate/ change pre-defined texts (https://github.com/imanishpushkar/woocommercehelpbook/blob/master/woo-customize)
