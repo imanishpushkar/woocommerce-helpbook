@@ -1,0 +1,13 @@
+/*
+*WooCommerce Integration
+*/
+add_theme_support('woocommerce');
+function mytheme_add_woocommerce_support()
+{
+  add_theme_support('woocommerce');
+}
+
+add_action('after_setup_theme', 'mythemename_add_woocommerce_support');
+add_theme_support('wc-product-gallery-zoom');
+add_theme_support('wc-product-gallery-lightbox');
+add_theme_support('wc-product-gallery-slider');
