@@ -1,0 +1,61 @@
+/*
+*woo customize
+*/
+// To change add to cart text on single product page
+add_filter('woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text');
+function woocommerce_custom_single_add_to_cart_text()
+{
+  return __('Custom Text', 'woocommerce');
+}
+
+// To change add to cart text on product archives(Collection) page
+add_filter('woocommerce_product_add_to_cart_text', 'woocommerce_custom_product_add_to_cart_text');
+function woocommerce_custom_product_add_to_cart_text()
+{
+  return __('Custom Text', 'woocommerce');
+}
+
+//Change WooCommerce Add to cart message with cart link.
+function woocommerce_add_to_cart_message_html($message, $products)
+{
+
+  $count = 0;
+  $titles = array();
+  foreach ($products as $product_id => $qty) {
+    $titles[] = ($qty > 1 ? absint($qty) . ' &times; ' : '') . sprintf(_x('&ldquo;%s&rdquo;', 'Item name in quotes', 'woocommerce'), strip_tags(get_the_title($product_id)));
+    $count += $qty;
+  }
+
+  $titles     = array_filter($titles);
+  $added_text = sprintf(_n(
+    '%s some custom message', // Singular
+    '%s some custom message', // Plural
+    $count, // Number of products added
+    'woocommerce' // Textdomain
+  ), wc_format_list_of_items($titles));
+  $message    = sprintf('<a href="%s" class="button wc-forward">%s</a> %s', esc_url(wc_get_page_permalink('cart')), esc_html__('Custom Text', 'woocommerce'), esc_html($added_text));
+
+  return $message;
+}
+add_filter('wc_add_to_cart_message_html', 'woocommerce_add_to_cart_message_html', 10, 2);
+
+//Change 'Return to Shop' text on button
+add_filter('woocommerce_return_to_shop_text', 'woocommerce_store_button');
+function woocommerce_store_button()
+{
+  $store_button = "Custom Text"; // Change text as required
+
+  return $store_button;
+}
+
+//empty cart message
+remove_action('woocommerce_cart_is_empty', 'wc_empty_cart_message', 10);
+add_action('woocommerce_cart_is_empty', 'custom_empty_cart_message', 10);
+
+function custom_empty_cart_message()
+{
+  $html  = '<p class="cart-empty woocommerce-info">';
+  $html .= wp_kses_post(apply_filters('wc_empty_cart_message', __('Some Text', 'woocommerce')));
+  echo $html . '</p>';
+}
+
